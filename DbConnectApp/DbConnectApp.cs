@@ -1,4 +1,5 @@
 using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
 using System.Data;
 
 namespace DbConnectApp
@@ -9,11 +10,21 @@ namespace DbConnectApp
         {
             InitializeComponent();
         }
-        DataTable dataTable = new DataTable();
+        DataTable dataTable = new DataTable(); // Создаем объект для хранения данных из БД
         private void connection_string(object sender, EventArgs e)
         {
-            textBox1.Text = $"{textBox2.Text}={textBox7.Text};{textBox3.Text}={textBox8.Text};" +
-                $"{textBox4.Text}={textBox9.Text};{textBox5.Text}={comboBox1.SelectedItem};{textBox6.Text}={textBox10.Text};{textBox12.Text}={comboBox2.SelectedItem};";
+            // Собираем строку подключения
+            textBox1.Text = String.Empty;
+            if (!string.IsNullOrEmpty(textBox7.Text))
+                textBox1.Text += $"{textBox2.Text}={textBox7.Text};";
+            if (!string.IsNullOrEmpty(textBox8.Text))
+                textBox1.Text += $"{textBox3.Text}={textBox8.Text};";
+            if (!string.IsNullOrEmpty($"{comboBox1.SelectedItem}"))
+                textBox1.Text += $"{textBox5.Text}={comboBox1.SelectedItem}";
+            if ($"{comboBox1.SelectedItem}" == "false" && !string.IsNullOrEmpty($"{textBox9.Text}") && !string.IsNullOrEmpty($"{textBox10.Text}"))
+                textBox1.Text += $"{textBox4.Text}={textBox9.Text};{textBox6.Text}={textBox10.Text};";
+            if (!string.IsNullOrEmpty($"{comboBox2.SelectedItem}"))
+                textBox1.Text+=$"{textBox12.Text}={comboBox2.SelectedItem};";
         }
 
         private void button1_Click(object sender, EventArgs e)
