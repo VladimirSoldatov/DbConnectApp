@@ -20,7 +20,7 @@ namespace DbConnectApp
             if (!string.IsNullOrEmpty(textBox8.Text))
                 textBox1.Text += $"{textBox3.Text}={textBox8.Text};";
             if (!string.IsNullOrEmpty($"{comboBox1.SelectedItem}"))
-                textBox1.Text += $"{textBox5.Text}={comboBox1.SelectedItem}";
+                textBox1.Text += $"{textBox5.Text}={comboBox1.SelectedItem};";
             if ($"{comboBox1.SelectedItem}" == "false" && !string.IsNullOrEmpty($"{textBox9.Text}") && !string.IsNullOrEmpty($"{textBox10.Text}"))
                 textBox1.Text += $"{textBox4.Text}={textBox9.Text};{textBox6.Text}={textBox10.Text};";
             if (!string.IsNullOrEmpty($"{comboBox2.SelectedItem}"))
@@ -52,7 +52,7 @@ namespace DbConnectApp
             dataTable.Columns.Clear();
             dataTable.Clear();
 
-            string selectCommand = "SELECT * FROM dbo.Authors";
+            string selectCommand = "SELECT * FROM dbo.Authors;";
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(textBox1.Text))
