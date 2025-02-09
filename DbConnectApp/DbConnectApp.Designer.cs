@@ -54,8 +54,6 @@
             button2 = new Button();
             textBox13 = new TextBox();
             textBox14 = new TextBox();
-            button3 = new Button();
-            button4 = new Button();
             button5 = new Button();
             SuspendLayout();
             // 
@@ -172,7 +170,8 @@
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(143, 23);
             textBox7.TabIndex = 12;
-            textBox7.TextChanged += connection_string;
+            textBox7.TextChanged += this.connection_string;
+            textBox7.Validating += MarkInvalid;
             // 
             // textBox8
             // 
@@ -181,6 +180,7 @@
             textBox8.Size = new Size(143, 23);
             textBox8.TabIndex = 13;
             textBox8.TextChanged += connection_string;
+            textBox8.Validating += MarkInvalid;
             // 
             // comboBox1
             // 
@@ -200,6 +200,7 @@
             textBox9.Size = new Size(143, 23);
             textBox9.TabIndex = 15;
             textBox9.TextChanged += connection_string;
+            textBox9.Validating += MarkInvalid;
             // 
             // textBox10
             // 
@@ -208,6 +209,7 @@
             textBox10.Size = new Size(143, 23);
             textBox10.TabIndex = 16;
             textBox10.TextChanged += connection_string;
+            textBox10.Validating += MarkInvalid;
             // 
             // button1
             // 
@@ -289,24 +291,6 @@
             textBox14.TabIndex = 25;
             textBox14.TextChanged += changeInsert;
             // 
-            // button3
-            // 
-            button3.Location = new Point(0, 0);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 26;
-            button3.Text = "button3";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Location = new Point(8, 8);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 27;
-            button4.Text = "button4";
-            button4.UseVisualStyleBackColor = true;
-            // 
             // button5
             // 
             button5.Location = new Point(414, 417);
@@ -323,8 +307,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(801, 450);
             Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
             Controls.Add(textBox14);
             Controls.Add(textBox13);
             Controls.Add(button2);
@@ -385,8 +367,6 @@
         private Button button2;
         private TextBox textBox13;
         private TextBox textBox14;
-        private Button button3;
-        private Button button4;
         private Button button5;
     }
 }

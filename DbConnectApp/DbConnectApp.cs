@@ -1,6 +1,8 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 
 namespace DbConnectApp
 {
@@ -10,7 +12,7 @@ namespace DbConnectApp
         {
             InitializeComponent();
         }
-        DataGridView dataGridView1;
+        DataGridView dataGridView1 = new DataGridView();
         DataTable dataTable = new DataTable(); // Создаем объект для хранения данных из БД
         DataSet ds = new DataSet();
         private void connection_string(object sender, EventArgs e)
@@ -31,6 +33,9 @@ namespace DbConnectApp
 
         private void button1_Click(object sender, EventArgs e)
         {
+            var strings = textBox1.Text.Split(new char[] { ';', '=' }, StringSplitOptions.RemoveEmptyEntries);
+            if (strings.Length < 10)
+                return;
             dataGridView1 = Controls.Find("dataGridView1", true).FirstOrDefault() as DataGridView ?? new DataGridView();
             if (this.Controls.Find("dataGridView1", true).Length == 0)
             {
@@ -140,16 +145,45 @@ namespace DbConnectApp
         }
         private void button2_Click(object sender, EventArgs e)
         {
+
             if (textBox11.Text.Length > 0)
                 non_query(textBox11.Text);
             get_data();
 
         }
+
+        void MarkInvalid(object sender, EventArgs e)
+        {
+            if (sender is not null)
+            {
+                TextBox textBox = sender as TextBox ;
+                if (textBox?.Text.Length == 0)
+                {
+                    if ($"{comboBox1.SelectedItem}" != "false" && (textBox.Name == "textBox9" || textBox.Name == "textBox10"))
+                    {
+                        textBox.BackColor = Color.White;
+                        return;
+                    }
+                    textBox.BackColor = Color.Red;
+                }
+                else
+                    textBox.BackColor = Color.White;
+            }
+
+
+        }
+        
         void non_query(string selectCommand)
         {
-            var strings = textBox1.Text.Split(new char[] { ';', '=' }, StringSplitOptions.RemoveEmptyEntries);
-            if (strings.Length < 10)
-                return;
+            var strings = textBox1.Text.Split(new char[] { ';'}, StringSplitOptions.RemoveEmptyEntries);
+            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+            foreach (string s in strings)
+            {
+                string[] keyValue = s.Split("=");
+                if(keyValue.Length == 2)
+                keyValuePairs.Add(keyValue[0], keyValue[1]);
+            }
+
             DataTable dataTable = new DataTable();
 
 
