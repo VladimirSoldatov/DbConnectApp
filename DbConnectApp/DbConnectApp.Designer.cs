@@ -54,6 +54,9 @@
             button2 = new Button();
             textBox13 = new TextBox();
             textBox14 = new TextBox();
+            button3 = new Button();
+            button4 = new Button();
+            button5 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -286,11 +289,42 @@
             textBox14.TabIndex = 25;
             textBox14.TextChanged += changeInsert;
             // 
-            // Form1
+            // button3
+            // 
+            button3.Location = new Point(0, 0);
+            button3.Name = "button3";
+            button3.Size = new Size(75, 23);
+            button3.TabIndex = 26;
+            button3.Text = "button3";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(8, 8);
+            button4.Name = "button4";
+            button4.Size = new Size(75, 23);
+            button4.TabIndex = 27;
+            button4.Text = "button4";
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(414, 417);
+            button5.Name = "button5";
+            button5.Size = new Size(75, 23);
+            button5.TabIndex = 28;
+            button5.Text = "button5";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
+            // DbConnectApp
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(801, 450);
+            Controls.Add(button5);
+            Controls.Add(button4);
+            Controls.Add(button3);
             Controls.Add(textBox14);
             Controls.Add(textBox13);
             Controls.Add(button2);
@@ -317,7 +351,7 @@
             Controls.Add(textBox2);
             Controls.Add(label1);
             Controls.Add(textBox1);
-            Name = "Form1";
+            Name = "DbConnectApp";
             Text = "Form1";
             Load += connection_string;
             ResumeLayout(false);
@@ -351,5 +385,8 @@
         private Button button2;
         private TextBox textBox13;
         private TextBox textBox14;
+        private Button button3;
+        private Button button4;
+        private Button button5;
     }
 }
